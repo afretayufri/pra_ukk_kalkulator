@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, Sans-Serif;
+}
+*::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.bg-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.1);
+    backdrop-filter: blur(5px);
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+.bg-blur.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: #3B9797;
+    align-items: center;
+    color: white;
+    padding: .8rem 2rem;
+}
+.header .riwayat-icon {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.textkalkulator {
+    width: 100%;
+    height: 110px;
+    padding: 1.8rem 2rem;
+}
+.textkalkulator input {
+    font-size: 2rem;
+    font-weight: 700;
+    width: 100%;
+    height: 100%;
+    text-align: end;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: black;
+}
+.output {
+    padding: 0 2rem;
+    width: 100%;
+}
+.output input {
+    font-size: 1.7rem;
+    text-align: end;
+    font-weight: 900;
+    color: gray;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.input {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    width: 100%;
+    gap: 5px;
+    padding: 0 1.5rem;
+    margin-top: auto;
+}
+.input .input-item {
+    background: #91C4C3;
+    padding: .7rem 0;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 12px;
+    user-select: none;
+    transition: .3s;
+}
+
+.input .input-item:hover:not(#second_btn):not(:disabled) {
+    background: yellow;
+}
+
+.input .angka {
+    background: lightgrey !important;
+}
+
+.input .angka:hover {
+    background: #91C4C3 !important;
+}
+
+.input .input-item:active {
+    transform: scale(.95);
+}
+
+#second_btn.active {
+    background: lightgray !important;
+}
+
+.input .input-item:disabled {
+    color: red !important;
+    cursor: not-allowed;
+}
+
+#riwayat {
+    height: 550px;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    background: #e0e0e0;
+    transform: translate(1000px, -50%);
+    padding: 20px 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    z-index: 51;
+    transition: .5s;
+}
+#riwayat.active {
+    transform: translate(0, -50%);
+}
+#riwayat .header-riwayat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#riwayat .header-riwayat div h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+#riwayat .header-riwayat div p {
+    font-size: .8rem;
+}
+#riwayat .header-riwayat #close-riwayat {
+    font-size: 2.3rem;
+    cursor: pointer;
+}
+#riwayat .fiture-riwayat {
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+    font-size: 14px;
+}
+#riwayat .fiture-riwayat div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+#riwayat .body-riwayat {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+#riwayat .body-riwayat ul {
+    list-style: none;
+}
+#riwayat .body-riwayat ul li {
+    background: #91C4C3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+#riwayat .body-riwayat ul li div h3 {
+    font-size: 18px;
+}
+#riwayat .body-riwayat ul li div h4 {
+    color: #3e3d3d;
+    font-size: 20px;
+    font-weight: 800;
+}
+.not_found_text {
+    text-align: center;
+    margin-top: 5px;
+    font-weight: 600;
+}
