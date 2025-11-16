@@ -1,4 +1,3 @@
-
 const inputAngka = document.querySelectorAll('.angka');
 const textKalkulator = document.querySelector('.textkalkulator input');
 const output = document.querySelector('.output input');
