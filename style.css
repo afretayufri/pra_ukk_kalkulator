@@ -108,7 +108,7 @@ body {
 }
 
 .input .input-item:hover:not(#second_btn):not(:disabled) {
-    background: yellow;
+    background: lightgray;
 }
 
 .input .angka {
