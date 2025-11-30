@@ -1,5 +1,5 @@
 const inputAngka = document.querySelectorAll('.angka');
-const textKalkulator = document.querySelector('.textkalkulator input');
+const textKalkulator = document.querySelector('.text input');
 const output = document.querySelector('.output input');
 const operator = document.querySelectorAll('.operator');
 const hapusSatu = document.querySelector('.hapus-satu');
@@ -148,7 +148,7 @@ operator.forEach((o) => {
           return;
         }
 
-        if(simbol == "еˣ") {
+        if(simbol == "eˣ") {
           if(/\d|\%|\)/.test(lastSimbol)) {
             insertAtCursor('×е^');
           } else {
@@ -318,8 +318,9 @@ function hitungKalkulator() {
                     .replace(/\./g, '')
                     .replace(/\,/g, '.')
                     .replace(/\^/g, '**')
-                    .replace(/\π/g, `(${Math.PI})`)
-                    .replace(/\е/g, `(${Math.E})`)
+                    .replace(/\π/g, `(${Math.PI})`) // Phi
+                    .replace(/\е/g, `(${Math.E})`) // Euler
+                    .replace(/\φ/g, `(${(1 + Math.sqrt(5)) / 2})`) // Golden Ratio
                     .replace(/\%/g, '/100');
                     
 
@@ -377,8 +378,9 @@ function hitungKalkulator() {
                   .replace(/\./g, '')
                   .replace(/\,/g, '.')
                   .replace(/\^/g, '**')
-                  .replace(/\π/g, `(${Math.PI})`)
-                  .replace(/\е/g, `(${Math.E})`)
+                  .replace(/\π/g, `(${Math.PI})`) // Phi
+                  .replace(/\е/g, `(${Math.E})`) // Euler
+                  .replace(/\φ/g, `(${(1 + Math.sqrt(5)) / 2})`) // Golden Ratio
                   .replace(/\%/g, '/100');
 
                 const val = eval(innerValue);
@@ -403,7 +405,10 @@ function hitungKalkulator() {
                     .replace(/\./g, '')
                     .replace(/\,/g, '.')
                     .replace(/\^/g, '**')
-                    .replace(/\%/g, '/100')
+                    .replace(/\π/g, `(${Math.PI})`) // Phi
+                    .replace(/\е/g, `(${Math.E})`) // Euler
+                    .replace(/\φ/g, `(${(1 + Math.sqrt(5)) / 2})`) // Golden Ratio
+                    .replace(/\%/g, '/100');
 
             ekspresi = ekspresi.replace(/(\d+)!/g, (_, m) => {
               const num = parseInt(m);
@@ -446,7 +451,12 @@ function hitungKalkulator() {
         const karakterTerakhir = ekspresi.slice(-1);
         if(['+','-','*','/', '(', '^'].includes(karakterTerakhir)) return;
 
-        console.log(ekspresi)
+        // Logaritma 
+        // Konversi a log(b) -> Math.log(b) / Math.log(a)
+        ekspresi = ekspresi.replace(/(\d+)log\((\d+)\)/g, "Math.log($2)/Math.log($1)");
+        // Konversi ln(x) -> Math.log(x)
+        ekspresi = ekspresi.replace(/ln\((\d+)\)/g, "Math.log($1)");
+
         ekspresi = ekspresi.replace(/,/g, '.');
         const hasil = eval(ekspresi); 
         if(!isFinite(hasil) || isNaN(hasil)) {
